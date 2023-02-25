@@ -1,10 +1,15 @@
 function solution(k, m, score) {
-  let answer = 0;
-  const scores = score.sort((a,b) => b - a).slice(0, score.length - (score.length % m));
-  for (let index = 0; index < scores.length; index += m) {
-    const apples = scores.slice(index, index + m);
-    const min = Math.min(...apples);
-    answer += min * m;
-  }
-  return answer;
+  const apples = {};
+  score.forEach(value => {
+    apples[value] = (apples[value] ?? 0) + 1;
+  });
+
+  const scores = Object.keys(apples)
+  return scores.reduceRight((arr ,score, index) => {
+    arr += parseInt(apples[score] / m) * score;
+    if (index != 0) {
+      apples[scores.at(index-1)] += apples[score] % m;
+    }
+    return arr;
+  }, 0) * m;
 }
