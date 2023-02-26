@@ -8,10 +8,7 @@ function solution(s, skip, index) {
     
     for (const str of s) {
         let strCharCode = str.charCodeAt();
-        let strIndex = alphabetCodes.indexOf(strCharCode) + index;
-        while (strIndex >= alphabetCodes.length) {
-            strIndex -= alphabetCodes.length
-        }
+        let strIndex = (alphabetCodes.indexOf(strCharCode) + index) % alphabetCodes.length;
         answer += String.fromCharCode(alphabetCodes[strIndex]);
     }
     return answer;
