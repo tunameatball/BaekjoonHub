@@ -4,7 +4,7 @@ function solution(k, m, score) {
     apples[value] = (apples[value] ?? 0) + 1;
   });
 
-  const scores = Object.keys(apples)
+  const scores = Object.keys(apples).sort();
   return scores.reduceRight((arr ,score, index) => {
     arr += parseInt(apples[score] / m) * score;
     if (index != 0) {
