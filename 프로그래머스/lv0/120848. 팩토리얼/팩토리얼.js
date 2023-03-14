@@ -1,8 +1,9 @@
 function solution(n) {
-    let answer = 0;
+    let answer = 1;
     let fact = 1;
-    for (answer = 1; fact <= n; answer++) {
+    while (fact * (answer + 1) <= n) {
+        ++answer;
         fact *= answer;
     }
-    return answer - 2;
+    return answer;
 }
